@@ -1,2 +1,2 @@
-# gosplash
-Day #2 Learning GoLang
+# GoSplash Learning Go Language
+Day #2 Working with simple REST API of Unsplash
