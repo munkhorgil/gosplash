@@ -92,12 +92,23 @@ func showRandom(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("%+v\n", r)
 }
 
+func showMyPhotos(w http.ResponseWriter, req *http.Request) {
+	r, err := sendRequest(w, "/photos/me", "")
+
+	if err != nil {
+		println(err)
+	}
+
+	fmt.Printf("%+v\n", r)
+}
+
 func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/api/photos/{query}", search).Methods("GET")
 	r.HandleFunc("/api/photos/featured", showFeatured).Methods("GET")
 	r.HandleFunc("/api/photos/random", showRandom).Methods("GET")
+	r.HandleFunc("/api/photos/me", showMyPhotos).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
